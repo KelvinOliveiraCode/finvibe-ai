@@ -1,182 +1,149 @@
+# finvibe-ai — Painel de finanças pessoais com assistente de IA
 
-# 💰 FinVibe AI - Finanças Pessoais Inteligentes
+![React](https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06b6d4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8-646cff?style=flat-square&logo=vite&logoColor=white)
+![Recharts](https://img.shields.io/badge/Recharts-2-22c55e?style=flat-square&logo=react&logoColor=white)
 
-Uma aplicação web moderna para gerenciamento de finanças pessoais, desenvolvida com **React**, **TypeScript** e **Tailwind CSS**, oferecendo uma experiência intuitiva para controle financeiro por meio de dashboards interativos e recursos baseados em Inteligência Artificial.
-
-> Projeto desenvolvido como entrega do desafio **DIO Lab - Vibe Coding**.
-
----
-
-# 📖 Sobre o Projeto
-
-O **FinVibe AI** é uma aplicação web criada para auxiliar usuários no gerenciamento das finanças pessoais de forma simples, organizada e visual. A plataforma reúne informações financeiras em um único ambiente, permitindo acompanhar receitas, despesas, investimentos, patrimônio e metas financeiras através de indicadores intuitivos e gráficos interativos.
-
-Além do controle financeiro tradicional, o sistema incorpora recursos de Inteligência Artificial para oferecer análises personalizadas, responder perguntas sobre os dados do usuário e gerar recomendações que auxiliam na tomada de decisões financeiras.
-
-O projeto foi desenvolvido utilizando tecnologias modernas do ecossistema React, priorizando componentização, responsividade, experiência do usuário e organização do código.
+**finvibe-ai** é um app web de finanças pessoais construído em React 18 + TypeScript com Tailwind CSS, Recharts para visualização de dados e Lucide para iconografia, empacotado pelo Vite 8. A interface é mobile-first, com dark mode em glassmorphism — painéis translúcidos, bordas suaves e hierarquia visual pensada para leitura rápida de números. O projeto nasceu do desafio "Vibe Coding" da DIO: o app inteiro foi gerado a partir de um PRD passado via prompt, e a arquitetura resultante é enxuta por design — estado gerenciado no React, sem backend, dados vivendo localmente no cliente. É um exemplo prático de como um PRD bem especificado se traduz em uma SPA completa e funcional.
 
 ---
 
-# ✨ Funcionalidades
+## 🇧🇷 Português
 
-## 📊 Dashboard Financeiro
+### O que é
 
-O dashboard reúne as principais informações financeiras em uma única tela. São apresentados indicadores como saldo atual, receitas do mês, despesas, economia acumulada, investimentos e patrimônio total, permitindo uma visão rápida da situação financeira do usuário.
+Aplicação de finanças pessoais com dashboard completo, gráficos interativos, controle de orçamento, score financeiro, metas e um assistente financeiro conversacional com IA. Todo o fluxo roda no navegador: não há servidor, banco de dados ou API externa — os dados ficam no estado local do React.
 
----
+### Funcionalidades
 
-## 📈 Visualização de Dados
+- **Dashboard** — visão consolidada com saldo, receitas, despesas, economia, investimentos e patrimônio em cards de leitura imediata.
+- **Gráficos interativos** — Recharts com filtros dinâmicos: fluxo de caixa ao longo do tempo e gastos por categoria, com drill-down por período.
+- **Controle de orçamento** — orçamento por categoria com barras de progresso e alertas quando o limite se aproxima ou estoura.
+- **Score Financeiro** — pontuação composta por quatro dimensões: organização, controle, economia e investimentos. O score responde às mudanças de hábito registradas no app.
+- **Metas** — progresso por meta, cálculo da economia mensal necessária e previsão de conclusão com base no ritmo atual.
+- **Assistente financeiro com IA** — interface conversacional que responde perguntas sobre gastos mensais, economia e categorias, e entrega sugestões acionáveis.
+- **Insights automáticos** — detecção de tendências de gastos e evolução patrimonial, gerados a partir dos próprios dados do usuário.
+- **Tags, notificações e sidebar recolhível** — organização transacional flexível e navegação pensada para telas pequenas.
+- **Responsivo** — layout mobile-first que se adapta de smartphone a desktop.
 
-O sistema apresenta gráficos interativos que facilitam a análise das finanças. O usuário pode acompanhar o fluxo de caixa, visualizar a distribuição dos gastos por categoria e interpretar indicadores financeiros através de gráficos dinâmicos e filtros por período.
+### Arquitetura
 
----
-
-## 🎯 Controle de Orçamento
-
-O FinVibe AI permite criar limites de gastos para diferentes categorias financeiras. O progresso é acompanhado por barras visuais e alertas automáticos são exibidos quando determinado orçamento está próximo ou ultrapassa o valor definido.
-
----
-
-## 🏆 Score Financeiro
-
-A aplicação calcula automaticamente um Score Financeiro baseado no comportamento financeiro do usuário. A pontuação considera fatores como organização, controle de despesas, economia e investimentos, oferecendo uma visão geral da saúde financeira.
-
----
-
-## 🎯 Metas Financeiras
-
-O usuário pode criar objetivos financeiros personalizados informando o valor desejado e o prazo esperado. A aplicação calcula automaticamente o progresso da meta, o valor economizado, a economia mensal necessária e uma previsão para sua conclusão.
-
----
-
-## 🤖 IA Financeira
-
-O sistema conta com um assistente financeiro conversacional capaz de responder perguntas sobre as informações cadastradas. Entre as consultas disponíveis estão gastos mensais, economia acumulada, categorias com maiores despesas, limite recomendado de gastos e sugestões para melhorar a organização financeira.
-
----
-
-## 💡 Insights Inteligentes
-
-Com base nas movimentações registradas, a Inteligência Artificial gera análises automáticas sobre o comportamento financeiro do usuário. Os insights destacam tendências de consumo, crescimento ou redução de despesas, evolução patrimonial e oportunidades de economia.
-
----
-
-## 🗂 Organização
-
-Para facilitar o gerenciamento das informações, o sistema possui organização por tags, central de notificações, navegação através de uma sidebar recolhível e uma interface totalmente responsiva, proporcionando uma boa experiência tanto em computadores quanto em dispositivos móveis.
-
----
-
-# 🛠 Tecnologias Utilizadas
-
-| Tecnologia | Finalidade |
-|------------|------------|
-| React 18 | Construção da interface |
-| TypeScript | Tipagem estática |
-| Tailwind CSS | Estilização |
-| Recharts | Gráficos interativos |
-| Lucide React | Ícones |
-| Vite | Build Tool |
-
----
-
-# 🎨 Design
-
-O projeto foi desenvolvido seguindo conceitos modernos de UI/UX inspirados em aplicações SaaS. Toda a interface utiliza Dark Mode, efeitos de Glassmorphism, gradientes suaves, animações discretas e componentes reutilizáveis, proporcionando uma experiência elegante e intuitiva.
-
-Além disso, toda a aplicação foi construída seguindo uma abordagem **mobile-first**, garantindo responsividade para diferentes tamanhos de tela.
-
----
-
-# 🚀 Como Executar
-
-## Clone o repositório
-
-```bash
-git clone https://github.com/KelvinOliveiraCode/finvibe-ai.git
+```
+src/
+├── App.tsx        # raiz da aplicação
+├── components/    # dashboard, gráficos, orçamento, metas, assistente
+├── hooks/        # estado e lógica reutilizável
+└── ...
 ```
 
-## Entre na pasta do projeto
+A estrutura de `src/` é deliberadamente mínima — o ponto de entrada é um único `App.tsx` que orquestra as telas. O estado vive no React (context e hooks), sem camada de persistência externa: é uma SPA pura, ideal para demonstrar UI de dados sem infraestrutura.
 
-```bash
-cd finvibe-ai
-```
+Decisões de stack:
 
-## Instale as dependências
+- **React 18** — hooks e context cobrem todo o gerenciamento de estado; nenhuma lib de estado global é necessária nesse escopo.
+- **TypeScript** — contratos de dados tipados para transações, categorias, orçamentos e metas; o tipo é a documentação.
+- **Tailwind CSS** — utilitários compõem o visual glassmorphism (transparências, blur, bordas arredondadas) sem CSS custom de manter.
+- **Recharts** — gráficos declarativos integrados ao ciclo de vida do React.
+- **Lucide** — ícones SVG consistentes e tree-shakeables.
+- **Vite 8** — dev server instantâneo e build de produção enxuto.
+
+### Dados e estado
+
+Não há camada de dados externa: transações, orçamentos, metas e tags vivem no estado React. Isso mantém o app como uma demonstração fechada e reprodutível — qualquer pessoa que clona o repositório roda a mesma experiência sem configurar chave de API, banco ou variável de ambiente. O assistente de IA e os insights operam sobre os mesmos dados em memória, o que torna o comportamento totalmente determinístico entre recargas.
+
+O desafio "Vibe Coding" da DIO pediu exatamente isso: um PRD escrito com precisão, passado via prompt, e um app completo saindo do outro lado. O resultado é a prova de que a qualidade do prompt/PRD — escopo, features, hierarquia de informação, tom visual — determina a qualidade do app gerado.
+
+### Como rodar
 
 ```bash
 npm install
-```
-
-## Execute a aplicação
-
-```bash
 npm run dev
 ```
 
-Acesse a aplicação em:
+O dev server sobe em `http://localhost:5173`. Para preview do build de produção:
 
-```text
-http://localhost:5173
+```bash
+npm run build
+npm run preview
 ```
 
----
+### Decisões técnicas
+
+- **Sem backend por design** — o desafio "Vibe Coding" da DIO pedia um app gerado via prompt a partir de um PRD; manter tudo client-side simplifica o deploy e isola a demonstração de UI/IA.
+- **Dark mode glassmorphism** — o tema escuro com efeito vidro foi escolhido para dar identidade visual forte sem custo de performance: tudo via utilitários Tailwind.
+- **Mobile-first** — finanças pessoais se consultam no celular; o layout prioriza uma coluna e expande conforme a viewport.
 
 ---
 
-# 🧠 Prompt (PRD) Utilizado
+## 🇺🇸 English
 
-O desenvolvimento do **FinVibe AI** foi orientado por um Prompt de Requisitos (PRD), utilizado para guiar a Inteligência Artificial durante a geração da aplicação.
+### What it is
 
-O documento especificava a construção de um dashboard financeiro moderno contendo indicadores de saldo, receitas, despesas, investimentos e patrimônio, além da implementação de gráficos interativos, Score Financeiro, sistema de orçamento por categoria, gerenciamento de metas, assistente financeiro conversacional baseado em IA, geração automática de insights, sistema de notificações, organização por tags e uma interface totalmente responsiva.
+A personal finance web app with a full dashboard, interactive charts, budget control, a financial score, goals, and a conversational AI assistant. Everything runs in the browser: no server, no database, no external API — data lives in React's local state.
 
-Também foram definidos requisitos visuais como Dark Mode, Glassmorphism, animações suaves e utilização das tecnologias React, TypeScript, Tailwind CSS, Recharts, Lucide React e Vite.
+### Features
+
+- **Dashboard** — consolidated view with balance, income, expenses, savings, investments, and net worth in at-a-glance cards.
+- **Interactive charts** — Recharts with dynamic filters: cash flow over time and spending by category, with period drill-down.
+- **Budget control** — per-category budgets with progress bars and alerts when a limit is close to or over budget.
+- **Financial Score** — composite score across four dimensions: organization, control, savings, and investments. The score reacts to changes in the habits tracked in the app.
+- **Goals** — per-goal progress, required monthly savings, and completion forecast based on current pace.
+- **AI financial assistant** — conversational interface answering questions about monthly spending, savings, and categories, plus actionable suggestions.
+- **Automatic insights** — spending trend detection and net-worth evolution generated from the user's own data.
+- **Tags, notifications, collapsible sidebar** — flexible transaction organization and navigation built for small screens.
+- **Responsive** — mobile-first layout scaling from smartphone to desktop.
+
+### Architecture
+
+```
+src/
+├── App.tsx        # application root
+├── components/    # dashboard, charts, budget, goals, assistant
+├── hooks/         # reusable state and logic
+└── ...
+```
+
+The `src/` structure is deliberately minimal — a single `App.tsx` entry point orchestrates the screens. State lives in React (context and hooks) with no external persistence layer: a pure SPA, well suited for showcasing data UI without infrastructure.
+
+Stack decisions:
+
+- **React 18** — hooks and context handle all state management; no global state library needed at this scope.
+- **TypeScript** — typed data contracts for transactions, categories, budgets, and goals; the types are the documentation.
+- **Tailwind CSS** — utilities compose the glassmorphism look (transparency, blur, rounded borders) without custom CSS to maintain.
+- **Recharts** — declarative charts wired into React's lifecycle.
+- **Lucide** — consistent, tree-shakeable SVG icons.
+- **Vite 8** — instant dev server and lean production build.
+
+### Running it
+
+```bash
+npm install
+npm run dev
+```
+
+The dev server starts at `http://localhost:5173`. For a production build:
+
+```bash
+npm run build
+```
+
+### Technical decisions
+
+- **No backend by design** — the DIO "Vibe Coding" challenge called for an app generated from a PRD via prompt; keeping everything client-side simplifies deployment and keeps the UI/AI demonstration isolated.
+- **Glassmorphism dark mode** — the dark glass theme was chosen to deliver a strong visual identity at zero performance cost: pure Tailwind utilities.
+- **Mobile-first** — personal finance gets checked on the phone; the layout leads with a single column and expands with the viewport.
 
 ---
 
-# 📚 Aprendizados
+## Autor
 
-O desenvolvimento deste projeto permitiu aprofundar conhecimentos em desenvolvimento Front-end moderno utilizando React e TypeScript, componentização, criação de dashboards, visualização de dados, estilização com Tailwind CSS e integração de Inteligência Artificial ao processo de desenvolvimento.
+**Kelvin Oliveira**
 
-Também foi uma excelente oportunidade para compreender melhor a importância da Engenharia de Prompt na construção de aplicações assistidas por IA.
+- GitHub: [KelvinOliveiraCode](https://github.com/KelvinOliveiraCode)
+- LinkedIn: [kelvin-oliveira-0282033b4](https://www.linkedin.com/in/kelvin-oliveira-0282033b4/)
 
----
+## Licença
 
-# 💭 Reflexão sobre o Processo
-
-O desenvolvimento do **FinVibe AI** demonstrou como a Inteligência Artificial pode acelerar significativamente a criação de aplicações modernas quando utilizada juntamente com boas práticas de engenharia de software.
-
-A estrutura da aplicação, a componentização em React e a utilização do Tailwind CSS permitiram desenvolver uma interface organizada e consistente. A biblioteca Recharts simplificou a criação dos gráficos financeiros, enquanto a IA contribuiu para acelerar diversas etapas do desenvolvimento.
-
-Durante o projeto também surgiram desafios, principalmente relacionados ao refinamento da interface responsiva e ao aperfeiçoamento do comportamento do assistente conversacional para compreender melhor o contexto das perguntas realizadas pelo usuário.
-
-A principal lição obtida foi perceber que a qualidade dos resultados produzidos por uma Inteligência Artificial depende diretamente da qualidade das instruções fornecidas. Prompts claros, objetivos e bem estruturados resultam em soluções significativamente mais completas e consistentes.
-
----
-
-# 🚀 Melhorias Futuras
-
-O FinVibe AI foi desenvolvido com uma arquitetura preparada para evoluções futuras. Entre as funcionalidades planejadas estão integração com Open Finance, sincronização automática com instituições bancárias, importação de extratos em formatos OFX, CSV e PDF, gerenciamento completo de cartões de crédito, previsão financeira baseada em Inteligência Artificial, geração de relatórios em PDF e Excel, além de uma futura versão mobile da aplicação.
-
----
-
-# 👨‍💻 Autor
-
-## Kelvin Oliveira
-
-Desenvolvedor em formação, estudante de **Ciência da Computação** e **Análise e Desenvolvimento de Sistemas**, com interesse em Desenvolvimento Full Stack, Inteligência Artificial e Engenharia de Software.
-
-### Contato
-
-**GitHub:** https://github.com/KelvinOliveiraCode
-
-**DIO:** https://web.dio.me/users/kelvinrebelosw
-
----
-
-# ⭐ Apoie o Projeto
-
-Se este projeto foi útil para você ou serviu como inspiração para seus estudos, considere deixar uma **estrela** no repositório. Isso ajuda na divulgação do projeto e incentiva o desenvolvimento de novas aplicações.
-
-Caso tenha sugestões de melhorias ou encontre algum problema, fique à vontade para abrir uma **Issue** ou enviar um **Pull Request**. Toda contribuição é muito bem-vinda.
-
+Distribuído sob a licença MIT. Consulte o arquivo de licença do repositório para detalhes.
