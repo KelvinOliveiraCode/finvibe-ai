@@ -14,7 +14,7 @@
 
 ## O que é
 
-Finanças pessoais com React, TypeScript e IA: score, metas, orçamento e insights | Personal finance app with React, TypeScript and AI
+Finanças pessoais com React, TypeScript e IA: score, metas, orçamento e insights
 
 ---
 
