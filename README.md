@@ -1,97 +1,85 @@
 # finvibe-ai
 
-![JavaScript/TypeScript](https://img.shields.io/badge/JS-TS-yellow?logo=javascript)   ![status: concluido](https://img.shields.io/badge/status-concluido-green)   ![licenca: MIT](https://img.shields.io/badge/licenca-MIT-blue)
+[![JavaScript/TypeScript](https://img.shields.io/badge/JS-TS-yellow?logo=javascript)](https://www.typescriptlang.org/)   ![status: concluido](https://img.shields.io/badge/status-concluido-green)   ![licenca: MIT](https://img.shields.io/badge/licenca-MIT-blue)
 
 ## Resumo
 
-Aplicacao web em JavaScript/TypeScript. Finanças pessoais com React, TypeScript e IA: score, metas, orçamento e insights | Personal finance app with React, TypeScript and AI
+Finanças pessoais com React, TypeScript e IA: score, metas, orçamento e insights | Personal finance app with React, TypeScript and AI
+## Problema / Por que existe
 
-## Problema / por que existe
-
-O projeto entrega uma interface ou utilitario web para um recorte especifico, com foco em navegador como ambiente de execucao e sem dependencia de servidor proprio.
-
+O projeto aborda um recorte prático e automatiza uma tarefa que, feita manualmente, é repetitiva e propensa a erro. O foco está em transformar dados ou processos em saída confiável, com código legível, testável e extensível.
 ## Arquitetura
 
-- Camada de apresentacao: componentes e paginas que renderizam a interface.
-- Camada de logica: funcoes e hooks que processam dados e estado.
-- Comunicacao: requisicoes HTTP a APIs externas ou dados locais, quando aplicavel.
+Arquivos de código (6):
+- `eslint.config.js`
+- `postcss.config.js`
+- `App.tsx`
+- `main.tsx`
+- `tailwind.config.js`
+- `vite.config.ts`
+## Dependências e Bibliotecas Principais
 
-O build e feito com Vite (ou ferramenta equivalente), gerando arquivos estaticos prontos para hospedagem.
-
-## Tecnologias
-
-- JavaScript / TypeScript
-- lucide-react
-- react
-- react-dom
-- recharts
 - @eslint/js
-- @types/node
-- @types/react
-- @types/react-dom
-- @vitejs/plugin-react
-- autoprefixer
-- eslint
+- globals
 - eslint-plugin-react-hooks
 - eslint-plugin-react-refresh
-- globals
-
-- Sem CI configurado neste repositorio.
-
-Nenhum teste automatizado detectado na varredura.
-
+- typescript-eslint
+- eslint/config
+- vite
+- @vitejs/plugin-react
 ## O que faz
 
 Finanças pessoais com React, TypeScript e IA: score, metas, orçamento e insights | Personal finance app with React, TypeScript and AI
-
 ## Como rodar
 
 Requisitos: Node.js e npm (ou yarn/pnpm).
 
-```
-# instalar dependencias
+```bash
+# instalar dependências
 npm install
 
 # rodar em desenvolvimento
-vite
+npm run dev
 
-# build para producao
-tsc -b && vite build
+# build para produção
+npm run build
 
 # rodar testes
-pytest
+npm test
 ```
+## Estrutura do Projeto
 
-## Estrutura do projeto
+- `eslint.config.js`
+- `postcss.config.js`
+- `App.tsx`
+- `main.tsx`
+- `tailwind.config.js`
+- `vite.config.ts`
+## Trade-offs e Decisões Técnicas
 
-- src/ (7 arquivo(s))
-- public/ (2 arquivo(s))
-- .gitignore, eslint.config.js, index.html, LICENSE, package-lock.json, package.json, postcss.config.js, README.en.md, README.md, tailwind.config.js e mais 4
+- Single-file component architecture (`App.tsx`): toda a UI, estado e lógica vivem em um arquivo para simplicidade de deploy e ausência de build complexo.
+- Estado global via `useState` + `useMemo`: evita Context API desnecessária para escopo pequeno; `useMemo` memoiza agregações custosas (gráficos, insights).
+- Dados mock in-line: transações, orçamentos, metas e notificações são constantes TypeScript ,  facilita prototipagem e testes visuais sem backend.
+- Tailwind CSS + gradientes customizados: design system inline via classes utilitárias; sem CSS separado, facilita manutenção visual.
+- IA financeira baseada em regras (`getAIResponse`): respostas determinísticas por palavras-chave; sem chamada a LLM externo, funciona offline e sem custo.
+- Persistência em `localStorage` (planejada): estado sobrevive a reload; sem servidor, sem banco.
+## Limitações Conhecidas
 
-
-## Trade-offs e decisões
-
-- Build estatico: facil de hospedar (GitHub Pages, Vercel, Netlify) sem servidor.
-- Dependencias minimas para reduzir superficie de manutencao.
-- Navegador como unico ambiente de execucao necessario.
-
-## Limitações conhecidas
-
-- Funciona no navegador; depende de conexao a internet para recursos externos.
-- Nenhum teste automatizado detectado.
-
-
+- Dados mock fixos; não há integração com API bancária real (Open Banking, Plaid, etc.).
+- IA baseada em regras simples (`getAIResponse`); não usa LLM real nem embeddings.
+- Persistência apenas em `localStorage` (planejada); dados perdidos ao trocar de navegador/dispositivo.
+- Sem autenticação/autorização; aplicação single-user local.
+- Gráficos via `recharts` com dados estáticos; não há streaming de dados em tempo real.
 ## Testes
 
+```bash
+npm test
 ```
-pytest
-```
-
+Nenhum teste automatizado detectado na varredura.
 ## Licença
 
-Distribuído sob a licenca MIT. Consulte o arquivo `LICENSE` do repositorio.
-
+Distribuído sob a licença MIT. Consulte o arquivo `LICENSE` do repositório.
 ## Autor
 
-Kelvin Oliveira, https://github.com/KelvinOliveiraCode
+Kelvin Oliveira ,  https://github.com/KelvinOliveiraCode
 Portfolio: https://kelvinoliveiracode.github.io/portfolio/
