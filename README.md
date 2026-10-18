@@ -1,85 +1,130 @@
 # finvibe-ai
 
-[![JavaScript/TypeScript](https://img.shields.io/badge/JS-TS-yellow?logo=javascript)](https://www.typescriptlang.org/)   ![status: concluido](https://img.shields.io/badge/status-concluido-green)   ![licenca: MIT](https://img.shields.io/badge/licenca-MIT-blue)
+<div align="center">
 
-## Resumo
+**English** · [Português (Brasil)](README.md)
 
-Finanças pessoais com React, TypeScript e IA: score, metas, orçamento e insights | Personal finance app with React, TypeScript and AI
-## Problema / Por que existe
+</div>
 
-O projeto aborda um recorte prático e automatiza uma tarefa que, feita manualmente, é repetitiva e propensa a erro. O foco está em transformar dados ou processos em saída confiável, com código legível, testável e extensível.
-## Arquitetura
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![React 18](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/) [![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/) [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/) [![MIT License](https://img.shields.io/badge/License-MIT-f4c430?style=flat-square)](LICENSE)
 
-Arquivos de código (6):
-- `eslint.config.js`
-- `postcss.config.js`
-- `App.tsx`
-- `main.tsx`
-- `tailwind.config.js`
-- `vite.config.ts`
-## Dependências e Bibliotecas Principais
+### Finanças pessoais com React, TypeScript e IA: score, metas, orçamento e insights
 
-- @eslint/js
-- globals
-- eslint-plugin-react-hooks
-- eslint-plugin-react-refresh
-- typescript-eslint
-- eslint/config
-- vite
-- @vitejs/plugin-react
-## O que faz
+---
+
+## O que é
 
 Finanças pessoais com React, TypeScript e IA: score, metas, orçamento e insights | Personal finance app with React, TypeScript and AI
-## Como rodar
 
-Requisitos: Node.js e npm (ou yarn/pnpm).
+---
+
+## Quick Start
 
 ```bash
-# instalar dependências
+# Clone and enter
+git clone https://github.com/KelvinOliveiraCode/<repo>.git
+cd <repo>
+
+# Install dependencies
 npm install
 
-# rodar em desenvolvimento
+# Development server
 npm run dev
 
-# build para produção
+# Production build
 npm run build
 
-# rodar testes
+# Run tests
 npm test
 ```
-## Estrutura do Projeto
 
-- `eslint.config.js`
-- `postcss.config.js`
-- `App.tsx`
-- `main.tsx`
-- `tailwind.config.js`
-- `vite.config.ts`
-## Trade-offs e Decisões Técnicas
+## Como funciona
 
-- Single-file component architecture (`App.tsx`): toda a UI, estado e lógica vivem em um arquivo para simplicidade de deploy e ausência de build complexo.
-- Estado global via `useState` + `useMemo`: evita Context API desnecessária para escopo pequeno; `useMemo` memoiza agregações custosas (gráficos, insights).
-- Dados mock in-line: transações, orçamentos, metas e notificações são constantes TypeScript ,  facilita prototipagem e testes visuais sem backend.
-- Tailwind CSS + gradientes customizados: design system inline via classes utilitárias; sem CSS separado, facilita manutenção visual.
-- IA financeira baseada em regras (`getAIResponse`): respostas determinísticas por palavras-chave; sem chamada a LLM externo, funciona offline e sem custo.
-- Persistência em `localStorage` (planejada): estado sobrevive a reload; sem servidor, sem banco.
-## Limitações Conhecidas
+Single-file component architecture (`App.tsx`): all UI, state, and logic live in one file for deploy simplicity and zero-config build.
 
-- Dados mock fixos; não há integração com API bancária real (Open Banking, Plaid, etc.).
-- IA baseada em regras simples (`getAIResponse`); não usa LLM real nem embeddings.
-- Persistência apenas em `localStorage` (planejada); dados perdidos ao trocar de navegador/dispositivo.
-- Sem autenticação/autorização; aplicação single-user local.
-- Gráficos via `recharts` com dados estáticos; não há streaming de dados em tempo real.
-## Testes
+Key architectural decisions:
+- **Global state** via `useState` + `useMemo` (avoids Context API overhead)
+- **Memoized aggregations** for charts and insights
+- **Inline mock data** as TypeScript constants for zero-backend prototyping
+- **Rule-based AI** (`getAIResponse`) ,  deterministic, offline, zero-cost
 
-```bash
-npm test
-```
-Nenhum teste automatizado detectado na varredura.
-## Licença
+---
 
-Distribuído sob a licença MIT. Consulte o arquivo `LICENSE` do repositório.
-## Autor
+## Capabilities
 
-Kelvin Oliveira ,  https://github.com/KelvinOliveiraCode
-Portfolio: https://kelvinoliveiracode.github.io/portfolio/
+| Capability | Description |
+|------------|-------------|
+| Dashboard | 6 metric cards (Balance, Income, Expense, Savings, Investments, Net Worth) |
+| Cash Flow | Bar chart (7d/30d) with Recharts ,  Income, Expense, Net per period |
+| Budget Tracking | Category budgets with progress bars, over/under alerts |
+| Goal Management | Progress rings with monthly savings calculation & deadline countdown |
+| AI Assistant | Rule-based chat (getAIResponse) ,  spending analysis, savings tips, projections |
+| Insights | Auto-generated alerts: delivery spikes, net worth growth, category breakdown |
+| Transactions | Add/edit income/expense with categories, tags, date picker |
+| Persistence | localStorage ,  state survives reload, zero backend |
+
+
+---
+
+## Showcase
+
+### Financial Dashboard Architecture
+
+- **Single-file React** (`App.tsx`): 1286 lines, zero build config beyond Vite
+- **State**: `useState` + `useMemo` for all aggregations (charts, insights, scores)
+- **AI**: Deterministic `getAIResponse` ,  keyword rules, offline, zero LLM cost
+- **Charts**: Recharts (Bar, Line, Pie) with custom Tailwind theming
+- **Icons**: lucide-react tree-shaken, custom SVG gradients
+
+[Explore App.tsx](src/App.tsx)
+
+---
+
+## FAQ
+
+<details>
+<summary><strong>Does the AI use an LLM?</strong></summary>
+
+No. The AI is rule-based (`getAIResponse`) ,  deterministic keyword matching. This keeps it offline, free, and instant.
+
+</details>
+
+<details>
+<summary><strong>Is my data private?</strong></summary>
+
+Yes. Everything runs in your browser. Data persists only in localStorage ,  never leaves your machine.
+
+</details>
+
+<details>
+<summary><strong>Can I connect real bank APIs?</strong></summary>
+
+Not currently. This is a prototype with mock data. Open Banking integration would require backend infrastructure.
+
+</details>
+
+
+
+---
+
+## Documentation
+
+- **Source Code** ,  Browse the `src/` directory for implementation details
+- **API Reference** ,  TypeScript types in source
+- **Architecture Diagram** ,  See [architecture.mermaid](docs/architecture.mermaid) (if present)
+- **Changelog** ,  [CHANGELOG.md](CHANGELOG.md) (if present)
+- **Contributing** ,  [CONTRIBUTING.md](CONTRIBUTING.md) (if present)
+
+## License
+
+[MIT](LICENSE) ,  Kelvin Oliveira
+
+---
+
+<div align="center">
+
+**Built with** · TypeScript + React + Vite + Tailwind
+
+**Author** · [Kelvin Oliveira](https://github.com/KelvinOliveiraCode) · [Portfolio](https://kelvinoliveiracode.github.io/portfolio/)
+
+</div>
