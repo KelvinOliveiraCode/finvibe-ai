@@ -50,18 +50,18 @@ Decisões arquiteturais principais:
 
 ---
 
-## Capabilities
+## Capacidades
 
-| Capability | Description |
+| Capacidade | Descrição |
 |------------|-------------|
-| Dashboard | 6 metric cards (Balance, Income, Expense, Savings, Investments, Net Worth) |
-| Cash Flow | Bar chart (7d/30d) with Recharts ,  Income, Expense, Net per period |
-| Budget Tracking | Category budgets with progress bars, over/under alerts |
-| Goal Management | Progress rings with monthly savings calculation & deadline countdown |
-| AI Assistant | Rule-based chat (getAIResponse) ,  spending analysis, savings tips, projections |
-| Insights | Auto-generated alerts: delivery spikes, net worth growth, category breakdown |
-| Transactions | Add/edit income/expense with categories, tags, date picker |
-| Persistence | localStorage ,  state survives reload, zero backend |
+| Dashboard | 6 cards de métricas (Saldo, Receitas, Despesas, Economia, Investimentos, Patrimônio) |
+| Fluxo de Caixa | Gráfico de barras (7d/30d) com Recharts ,  Receitas, Despesas, Saldo por período |
+| Orçamentos | Orçamentos por categoria com barras de progresso, alertas de estouro |
+| Metas | Anéis de progresso com cálculo de economia mensal e contagem regressiva |
+| Assistente IA | Chat baseado em regras (getAIResponse) ,  análise de gastos, dicas, projeções |
+| Insights | Alertas automáticos: picos de delivery, crescimento patrimonial, breakdown por categoria |
+| Transações | Adicionar/editar receitas/despesas com categorias, tags, seletor de data |
+| Persistência | localStorage ,  estado sobrevive a reload, zero backend |
 
 
 ---
@@ -80,26 +80,26 @@ Decisões arquiteturais principais:
 
 ---
 
-## FAQ
+## Perguntas Frequentes
 
 <details>
-<summary><strong>Does the AI use an LLM?</strong></summary>
+<summary><strong>A IA usa LLM?</strong></summary>
 
-No. The AI is rule-based (`getAIResponse`) ,  deterministic keyword matching. This keeps it offline, free, and instant.
+Não. A IA é baseada em regras (`getAIResponse`) ,  matching determinístico de palavras-chave. Isso a mantém offline, gratuita e instantânea.
 
 </details>
 
 <details>
-<summary><strong>Is my data private?</strong></summary>
+<summary><strong>Meus dados são privados?</strong></summary>
 
-Yes. Everything runs in your browser. Data persists only in localStorage ,  never leaves your machine.
+Sim. Tudo roda no seu navegador. Dados persistem apenas no localStorage ,  nunca saem da sua máquina.
 
 </details>
 
 <details>
-<summary><strong>Can I connect real bank APIs?</strong></summary>
+<summary><strong>Posso conectar APIs bancárias reais?</strong></summary>
 
-Not currently. This is a prototype with mock data. Open Banking integration would require backend infrastructure.
+Não no momento. É um protótipo com dados mock. Integração Open Banking exigiria infraestrutura de backend.
 
 </details>
 
@@ -107,15 +107,15 @@ Not currently. This is a prototype with mock data. Open Banking integration woul
 
 ---
 
-## Documentation
+## Documentação
 
-- **Source Code** ,  Browse the `src/` directory for implementation details
-- **API Reference** ,  TypeScript types in source
-- **Architecture Diagram** ,  See [architecture.mermaid](docs/architecture.mermaid) (if present)
-- **Changelog** ,  [CHANGELOG.md](CHANGELOG.md) (if present)
-- **Contributing** ,  [CONTRIBUTING.md](CONTRIBUTING.md) (if present)
+- **Código-Fonte** ,  Navegue pelo diretório `src/` para detalhes de implementação
+- **Referência da API** ,  Tipos TypeScript no fonte
+- **Diagrama de Arquitetura** ,  Veja [architecture.mermaid](docs/architecture.mermaid) (se presente)
+- **Changelog** ,  [CHANGELOG.md](CHANGELOG.md) (se presente)
+- **Contribuindo** ,  [CONTRIBUTING.md](CONTRIBUTING.md) (se presente)
 
-## License
+## Licença
 
 [MIT](LICENSE) ,  Kelvin Oliveira
 
@@ -123,8 +123,8 @@ Not currently. This is a prototype with mock data. Open Banking integration woul
 
 <div align="center">
 
-**Built with** · TypeScript + React + Vite + Tailwind
+**Construído com** · TypeScript + React + Vite + Tailwind
 
-**Author** · [Kelvin Oliveira](https://github.com/KelvinOliveiraCode) · [Portfolio](https://kelvinoliveiracode.github.io/portfolio/)
+**Autor** · [Kelvin Oliveira](https://github.com/KelvinOliveiraCode) · [Portfolio](https://kelvinoliveiracode.github.io/portfolio/)
 
 </div>
