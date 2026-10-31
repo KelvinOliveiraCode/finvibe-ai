@@ -1,130 +1,111 @@
 # finvibe-ai
 
-<div align="center">
-
 **English** · [Português (Brasil)](README.md)
 
-</div>
-
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![React 18](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/) [![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/) [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/) [![MIT License](https://img.shields.io/badge/License-MIT-f4c430?style=flat-square)](LICENSE)
-
-### Personal finance app with React, TypeScript and AI
-
----
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.x-3178C6?style=flat-square&logo=typescript&logoColor=white)](#) [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](#) [![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat-square&logo=vite&logoColor=white)](#) [![Recharts](https://img.shields.io/badge/Recharts-3-00BFFF?style=flat-square)](#) [![MIT License](https://img.shields.io/badge/License-MIT-f4c430?style=flat-square)](LICENSE)
 
 ## What it is
 
-Personal finance app with React, TypeScript and AI
+A **personal finance app** prototype in React with **6 screens** (dashboard, budgets, goals, AI, insights — `cards` is in the type but has no rendered page) and Recharts charts. The "AI" is entirely **rule-based** (`getAIResponse`, keyword matching), deterministic and offline — it calls no LLM. The data is mock, defined in `INITIAL_TRANSACTIONS`, in memory.
 
----
+## Status
 
-## Quick Start
+Prototype under development. **Note:** the production build (`npm run build`) fails and lint reports 19 errors — see Tests and quality.
 
-```bash
-# Clone and enter
-git clone https://github.com/KelvinOliveiraCode/<repo>.git
-cd <repo>
+## Features
 
-# Install dependencies
-npm install
+- **Dashboard**: metric cards (Balance, Income, Savings, Investments, Net worth), cash-flow chart (Recharts) with a 7d/30d filter and a financial score.
+- **Budgets**: categories with progress bars.
+- **Goals**: goal progress with monthly savings.
+- **Financial AI**: chat with deterministic rule-based answers from the mock transactions.
+- **Insights**: rule-generated alerts about the data (e.g. "Delivery spike", "Net worth growing", "Yearly projection").
+- **Mock transactions**: 5 initial records in memory (`INITIAL_TRANSACTIONS`).
 
-# Development server
-npm run dev
+## Architecture
 
-# Production build
-npm run build
+A single `App.tsx` file (1,286 lines) holds all the state, screens and logic in one module, split into page components inside the same file. Navigation is by `currentPage` (state) through a `switch`. There is no router, backend or persistence.
 
-# Run tests
-npm test
+```mermaid
+flowchart LR
+    U[User] --> A[App.tsx - state + navigation]
+    A --> D[DashboardPage - metric cards + flow]
+    A --> B[BudgetPage - budgets]
+    A --> G[GoalsPage - goals]
+    A --> AI[AIPage - rule chat]
+    A --> I[InsightsPage - alerts]
+    D --> RC[Recharts - charts]
 ```
 
-## How it works
+## Stack
 
-Arquitetura de componente em arquivo único (`App.tsx`): toda a UI, estado e lógica vivem em um arquivo para simplicidade de deploy e build zero-config.
+- React 19.2, TypeScript ~6.0
+- Vite 8, Tailwind CSS 3.4
+- Recharts 3.9 (charts), lucide-react (icons)
+- ESLint 10 + typescript-eslint
 
-Decisões arquiteturais principais:
-- **Estado global** via `useState` + `useMemo` (evita overhead do Context API)
-- **Agregações memoizadas** para gráficos e insights
-- **Dados mock in-line** como constantes TypeScript para prototipagem sem backend
-- **IA baseada em regras** (`getAIResponse`) ,  determinística, offline, custo zero
+## Repository layout
 
----
+```
+finvibe-ai/
+├── src/App.tsx           # the whole app (1,286 lines)
+├── src/App.css · index.css
+├── src/main.tsx
+├── index.html
+├── eslint.config.js · tailwind.config.js · postcss.config.js
+├── vite.config.ts · tsconfig*.json
+└── LICENSE               # MIT
+```
 
-## Capabilities
+## Prerequisites and installation
 
-| Capacidade | Descrição |
-|------------|-------------|
-| Dashboard | 6 cards de métricas (Saldo, Receitas, Despesas, Economia, Investimentos, Patrimônio) |
-| Fluxo de Caixa | Gráfico de barras (7d/30d) com Recharts ,  Receitas, Despesas, Saldo por período |
-| Orçamentos | Orçamentos por categoria com barras de progresso, alertas de estouro |
-| Metas | Anéis de progresso com cálculo de economia mensal e contagem regressiva |
-| Assistente IA | Chat baseado em regras (getAIResponse) ,  análise de gastos, dicas, projeções |
-| Insights | Alertas automáticos: picos de delivery, crescimento patrimonial, breakdown por categoria |
-| Transações | Adicionar/editar receitas/despesas com categorias, tags, seletor de data |
-| Persistência | localStorage ,  estado sobrevive a reload, zero backend |
+Node.js (npm).
 
+```bash
+git clone https://github.com/KelvinOliveiraCode/finvibe-ai.git
+cd finvibe-ai
+npm install
+```
 
----
+## How to run
 
-## Showcase
+```bash
+npm run dev       # development server (Vite)
+npm run lint      # eslint (code checks)
+npm run build     # production build (tsc -b && vite build)
+npm run preview   # preview the build
+```
 
-### Financial Dashboard Architecture
+There is no `npm test` script.
 
-- **Single-file React** (`App.tsx`): 1286 lines, zero build config beyond Vite
-- **State**: `useState` + `useMemo` for all aggregations (charts, insights, scores)
-- **AI**: Deterministic `getAIResponse` ,  keyword rules, offline, zero LLM cost
-- **Charts**: Recharts (Bar, Line, Pie) with custom Tailwind theming
-- **Icons**: lucide-react tree-shaken, custom SVG gradients
+## Tests and quality
 
-[Explore App.tsx](src/App.tsx)
+**Real state verified by the agent (31/10/2026):**
 
----
+- **`npm run build` FAILS** — the `tsc -b` step reports 8 `TS6133` errors (declared-but-unused values): `Calendar`, `PieChart`, `Pie`, `Cell`, `LineChart`, `Line`, `CATEGORY_ICONS` and `chartData`. The build does not produce a bundle.
+- **`npm run lint` returns 19 errors** (e.g. `no-explicit-any`) and exits with code 1.
+- There are no automated tests or an `npm test` script.
 
-## FAQ
+> The previous README claimed "persistence via localStorage" and React 18. **There is no `localStorage` in the code** (data is mock in memory) and `package.json` uses React 19. Both claims were corrected.
 
-<details>
-<summary><strong>Does the AI use an LLM?</strong></summary>
+## Technical decisions and trade-offs
 
-No. The AI is rule-based (`getAIResponse`) ,  deterministic keyword matching. This keeps it offline, free, and instant.
+- **Everything in one `App.tsx`**: simplicity for a single-page prototype, at the cost of a large file.
+- **Rule-based AI instead of an LLM**: offline, free, no API key; in exchange, answers are limited to fixed patterns.
+- **In-memory mock data**: no backend or persistence; reloading the page resets changes.
 
-</details>
+## Known limitations and roadmap
 
-<details>
-<summary><strong>Is my data private?</strong></summary>
+- Build and lint are broken in this state (TS6133 errors / 19 lint errors) — fixing them is the first roadmap step.
+- No persistence: adding `localStorage` would make data survive reloads.
+- The "cards" page is declared in the type but has no rendered implementation.
+- No real banking integration (fictitious data).
 
-Yes. Everything runs in your browser. Data persists only in localStorage ,  never leaves your machine.
+## Development process
 
-</details>
+An individual project by Kelvin Oliveira, built with orchestrated AI agents and reviewed by the author. The screen structure, the Recharts/Tailwind design and the review are the author's.
 
-<details>
-<summary><strong>Can I connect real bank APIs?</strong></summary>
+## License and author
 
-Not currently. This is a prototype with mock data. Open Banking integration would require backend infrastructure.
+MIT — Copyright (c) 2026 Kelvin Rebelo de Oliveira.
 
-</details>
-
-
-
----
-
-## Documentation
-
-- **Source Code** ,  Browse the `src/` directory for implementation details
-- **API Reference** ,  TypeScript types in source
-- **Architecture Diagram** ,  See [architecture.mermaid](docs/architecture.mermaid) (if present)
-- **Changelog** ,  [CHANGELOG.md](CHANGELOG.md) (if present)
-- **Contributing** ,  [CONTRIBUTING.md](CONTRIBUTING.md) (if present)
-
-## License
-
-[MIT](LICENSE) ,  Kelvin Oliveira
-
----
-
-<div align="center">
-
-**Built with** · TypeScript + React + Vite + Tailwind
-
-**Author** · [Kelvin Oliveira](https://github.com/KelvinOliveiraCode) · [Portfolio](https://kelvinoliveiracode.github.io/portfolio/)
-
-</div>
+**Author**: [Kelvin Oliveira](https://github.com/KelvinOliveiraCode) · [Portfolio](https://kelvinoliveiracode.github.io/portfolio/)
