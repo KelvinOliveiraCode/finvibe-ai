@@ -1,130 +1,111 @@
 # finvibe-ai
 
-<div align="center">
-
 [English](README.en.md) · **Português (Brasil)**
 
-</div>
-
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![React 18](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/) [![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/) [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/) [![MIT License](https://img.shields.io/badge/License-MIT-f4c430?style=flat-square)](LICENSE)
-
-### Finanças pessoais com React, TypeScript e IA: score, metas, orçamento e insights
-
----
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.x-3178C6?style=flat-square&logo=typescript&logoColor=white)](#) [![React 19](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](#) [![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat-square&logo=vite&logoColor=white)](#) [![Recharts](https://img.shields.io/badge/Recharts-3-00BFFF?style=flat-square)](#) [![MIT License](https://img.shields.io/badge/License-MIT-f4c430?style=flat-square)](LICENSE)
 
 ## O que é
 
-Finanças pessoais com React, TypeScript e IA: score, metas, orçamento e insights
+Protótipo de **aplicativo de finanças pessoais** em React com **6 telas** (dashboard, orçamentos, metas, IA, insights — `cards` está no tipo mas não tem página renderizada) e gráficos com Recharts. A "IA" é totalmente **baseada em regras** (`getAIResponse`, matching de palavras-chave), determinística e offline — não chama nenhum LLM. Os dados são mock, definidos em `INITIAL_TRANSACTIONS`, em memória.
 
----
+## Status
 
-## Início Rápido
+Protótipo em desenvolvimento. **Atenção:** o build de produção (`npm run build`) falha e o lint aponta 19 erros — ver seção Testes e qualidade.
 
-```bash
-# Clone e entre
-git clone https://github.com/KelvinOliveiraCode/<repo>.git
-cd <repo>
+## Funcionalidades
 
-# Instale dependências
-npm install
+- **Dashboard**: cards de métricas (Saldo, Receitas, Economia, Investimentos, Patrimônio), gráfico de fluxo de caixa (Recharts) com filtro 7d/30d e score financeiro.
+- **Orçamentos**: categorias com barras de progresso.
+- **Metas**: progresso de metas com economia mensal.
+- **IA Financeira**: chat com respostas determinísticas por regras a partir das transações mock.
+- **Insights**: alertas gerados por regras sobre os dados (ex.: "Delivery em alta", "Patrimônio crescendo", "Projeção anual").
+- **Transações mock**: 5 registros iniciais em memória (`INITIAL_TRANSACTIONS`).
 
-# Servidor de desenvolvimento
-npm run dev
+## Arquitetura
 
-# Build para produção
-npm run build
+Arquivo único `App.tsx` (1.286 linhas) com todo o estado, telas e lógica em um só módulo, dividido em componentes de página dentro do mesmo arquivo. Navegação por `currentPage` (state) com `switch`. Não há roteador, backend nem persistência.
 
-# Execute os testes
-npm test
+```mermaid
+flowchart LR
+    U[Usuário] --> A[App.tsx - state + navegação]
+    A --> D[DashboardPage - cards métricas + fluxo]
+    A --> B[BudgetPage - orçamentos]
+    A --> G[GoalsPage - metas]
+    A --> AI[AIPage - chat por regras]
+    A --> I[InsightsPage - alertas]
+    D --> RC[Recharts - gráficos]
 ```
 
-## Como funciona
+## Stack
 
-Arquitetura de componente em arquivo único (`App.tsx`): toda a UI, estado e lógica vivem em um arquivo para simplicidade de deploy e build zero-config.
+- React 19.2, TypeScript ~6.0
+- Vite 8, Tailwind CSS 3.4
+- Recharts 3.9 (gráficos), lucide-react (ícones)
+- ESLint 10 + typescript-eslint
 
-Decisões arquiteturais principais:
-- **Estado global** via `useState` + `useMemo` (evita overhead do Context API)
-- **Agregações memoizadas** para gráficos e insights
-- **Dados mock in-line** como constantes TypeScript para prototipagem sem backend
-- **IA baseada em regras** (`getAIResponse`) ,  determinística, offline, custo zero
+## Estrutura do repositório
 
----
+```
+finvibe-ai/
+├── src/App.tsx           # todo o app (1.286 linhas)
+├── src/App.css · index.css
+├── src/main.tsx
+├── index.html
+├── eslint.config.js · tailwind.config.js · postcss.config.js
+├── vite.config.ts · tsconfig*.json
+└── LICENSE               # MIT
+```
 
-## Capacidades
+## Pré-requisitos e instalação
 
-| Capacidade | Descrição |
-|------------|-------------|
-| Dashboard | 6 cards de métricas (Saldo, Receitas, Despesas, Economia, Investimentos, Patrimônio) |
-| Fluxo de Caixa | Gráfico de barras (7d/30d) com Recharts ,  Receitas, Despesas, Saldo por período |
-| Orçamentos | Orçamentos por categoria com barras de progresso, alertas de estouro |
-| Metas | Anéis de progresso com cálculo de economia mensal e contagem regressiva |
-| Assistente IA | Chat baseado em regras (getAIResponse) ,  análise de gastos, dicas, projeções |
-| Insights | Alertas automáticos: picos de delivery, crescimento patrimonial, breakdown por categoria |
-| Transações | Adicionar/editar receitas/despesas com categorias, tags, seletor de data |
-| Persistência | localStorage ,  estado sobrevive a reload, zero backend |
+Node.js (npm).
 
+```bash
+git clone https://github.com/KelvinOliveiraCode/finvibe-ai.git
+cd finvibe-ai
+npm install
+```
 
----
+## Como executar
 
-## Showcase
+```bash
+npm run dev       # servidor de desenvolvimento (Vite)
+npm run lint      # eslint (verificações de código)
+npm run build     # build de produção (tsc -b && vite build)
+npm run preview   # pré-visualiza o build
+```
 
-### Financial Dashboard Architecture
+Não há script `npm test`.
 
-- **Single-file React** (`App.tsx`): 1286 lines, zero build config beyond Vite
-- **State**: `useState` + `useMemo` for all aggregations (charts, insights, scores)
-- **AI**: Deterministic `getAIResponse` ,  keyword rules, offline, zero LLM cost
-- **Charts**: Recharts (Bar, Line, Pie) with custom Tailwind theming
-- **Icons**: lucide-react tree-shaken, custom SVG gradients
+## Testes e qualidade
 
-[Explore App.tsx](src/App.tsx)
+**Estado real verificado pelo agente (31/10/2026):**
 
----
+- **`npm run build` FALHA** — o passo `tsc -b` aponta 8 erros `TS6133` (valores declarados e nunca usados): `Calendar`, `PieChart`, `Pie`, `Cell`, `LineChart`, `Line`, `CATEGORY_ICONS` e `chartData`. O build não gera o bundle.
+- **`npm run lint` retorna 19 erros** (ex.: `no-explicit-any`), e falha com código de saída 1.
+- Não há testes automatizados nem script `npm test`.
 
-## Perguntas Frequentes
+> O README anterior afirmava "persistência via localStorage" e React 18. **Não há `localStorage` no código** (os dados são mock em memória) e o `package.json` usa React 19. Ambas as alegações foram corrigidas.
 
-<details>
-<summary><strong>A IA usa LLM?</strong></summary>
+## Decisões técnicas e trade-offs
 
-Não. A IA é baseada em regras (`getAIResponse`) ,  matching determinístico de palavras-chave. Isso a mantém offline, gratuita e instantânea.
+- **Tudo em um `App.tsx`**: simplicidade para um protótipo de uma página, à custa de um arquivo grande.
+- **IA por regras em vez de LLM**: offline, gratuita, sem chave de API; em troca, respostas limitadas a padrões fixos.
+- **Dados mock em memória**: sem backend nem persistência; recarregar a página zera as mudanças.
 
-</details>
+## Limitações conhecidas e roadmap
 
-<details>
-<summary><strong>Meus dados são privados?</strong></summary>
+- Build e lint quebrados neste estado (erros TS6133 / 19 lint errors) — primeiro passo do roadmap é resolver.
+- Sem persistência: adicionar `localStorage` faria os dados sobreviverem ao reload.
+- Página "cards" declarada no tipo, porém sem implementação renderizada.
+- Sem integração bancária real (dados fictícios).
 
-Sim. Tudo roda no seu navegador. Dados persistem apenas no localStorage ,  nunca saem da sua máquina.
+## Processo de desenvolvimento
 
-</details>
+Projeto individual de Kelvin Oliveira, construído com agentes de IA orquestrados e revisado pelo autor. A estrutura de telas, o design com Recharts/Tailwind e a revisão são do autor.
 
-<details>
-<summary><strong>Posso conectar APIs bancárias reais?</strong></summary>
+## Licença e autor
 
-Não no momento. É um protótipo com dados mock. Integração Open Banking exigiria infraestrutura de backend.
+MIT — Copyright (c) 2026 Kelvin Rebelo de Oliveira.
 
-</details>
-
-
-
----
-
-## Documentação
-
-- **Código-Fonte** ,  Navegue pelo diretório `src/` para detalhes de implementação
-- **Referência da API** ,  Tipos TypeScript no fonte
-- **Diagrama de Arquitetura** ,  Veja [architecture.mermaid](docs/architecture.mermaid) (se presente)
-- **Changelog** ,  [CHANGELOG.md](CHANGELOG.md) (se presente)
-- **Contribuindo** ,  [CONTRIBUTING.md](CONTRIBUTING.md) (se presente)
-
-## Licença
-
-[MIT](LICENSE) ,  Kelvin Oliveira
-
----
-
-<div align="center">
-
-**Construído com** · TypeScript + React + Vite + Tailwind
-
-**Autor** · [Kelvin Oliveira](https://github.com/KelvinOliveiraCode) · [Portfolio](https://kelvinoliveiracode.github.io/portfolio/)
-
-</div>
+**Autor**: [Kelvin Oliveira](https://github.com/KelvinOliveiraCode) · [Portfólio](https://kelvinoliveiracode.github.io/portfolio/)
